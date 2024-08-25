@@ -8,7 +8,7 @@ function Section2() {
         Explore Nearby
       </h1>
       <div className="mt-10 ">
-        <NearbyExplore/>
+        {/* <NearbyExplore/> */}
       </div>
     </div>
   );
