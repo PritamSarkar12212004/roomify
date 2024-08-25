@@ -6,32 +6,32 @@ function AuthenticateLogin() {
     <div
       className=" w-full h-[90.7vh]  flex flex-wrap  overflow-hidden relative "
       style={{
-        backgroundImage: "url('public/Login/17973908.jpg')",
+        backgroundImage: "url('/Login/17973908.jpg')",
         backgroundSize: "cover",
       }}
     >
       <img
-        src="public/Login/1.png"
+        src="/Login/1.png"
         className="h-96 rotate-[-25deg]  left-[-10%] top-[-2%]  absolute"
         alt=""
       />
       <img
-        src="public/Login/5.png"
+        src="/Login/5.png"
         className="h-[70vh]  absolute right-[-10%] top-[-10%] "
         alt=""
       />
       <img
-        src="public/Login/6.png"
+        src="/Login/6.png"
         className="h-96  absolute  right-[-5%]  bottom-[-20%] "
         alt=""
       />
       <img
-        src="public/Login/7.png"
+        src="/Login/7.png"
         className="h-[75vh]  absolute top-4     left-60 rotate-[20deg]"
         alt=""
       />
       <img
-        src="public/Login/9.png"
+        src="/Login/9.png"
         className="h-[70vh] bottom-[-20%]  absolute  "
         alt=""
       />
