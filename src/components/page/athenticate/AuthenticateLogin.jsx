@@ -1,7 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import contextMaker from "../../../context/contextMaker";
 function AuthenticateLogin() {
+  const { setauth } = useContext(contextMaker);
+  const navigate = useNavigate();
+  const { handleSubmit, reset, register } = useForm();
+  const formSubmit = (data) => {
+    const auth = localStorage.setItem("auth", JSON.stringify(data));
+    setauth(data);
+    reset();
+    navigate("/");
+  };
   return (
     <div
       className=" w-full h-[90.7vh]  flex flex-wrap  overflow-hidden relative "
@@ -39,17 +49,22 @@ function AuthenticateLogin() {
         <form
           action=""
           className=" flex flex-col gap-5 justify-center items-center border-2 border-zinc-800 px-10 py-20 rounded-2xl bg-black/15 backdrop-blur-sm"
+          onSubmit={handleSubmit(formSubmit)}
         >
           <h1 className="text-white text-3xl m-4">Login Your Identity </h1>
           <input
+            required
             type="text"
             placeholder="enter your Email"
             className="h-12 rounded-lg px-4 w-72 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+            {...register("email")}
           />
           <input
+            required
             type="text"
             placeholder="enter your password"
             className="h-12 rounded-lg px-4 w-72 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+            {...register("password")}
           />
           <p className="text-white opacity-85 text-sm">
             Not registered yet? Get started—

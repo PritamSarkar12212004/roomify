@@ -1,9 +1,19 @@
-import React from 'react'
-
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import contextMaker from "../../../context/contextMaker";
 function Profile() {
+  const { setauth } = useContext(contextMaker);
+  const navigate = useNavigate();
+  const auth = () => {
+    const auth = localStorage.removeItem("auth");
+    setauth(null);
+    navigate("/login");
+  };
   return (
-    <div>Profile</div>
-  )
+    <div>
+      <button onClick={() => auth()}>logout</button>
+    </div>
+  );
 }
 
-export default Profile
+export default Profile;

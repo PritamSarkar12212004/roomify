@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import contextMaker from "../../../context/contextMaker";
 function AuthenticateRegister() {
   return (
     <div
@@ -52,7 +52,7 @@ function AuthenticateRegister() {
             placeholder="enter your password"
             className="h-12 rounded-lg px-4 w-80 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
           />
-          <div className="w-full flex justify-center items-center gap-2"> 
+          <div className="w-full flex justify-center items-center gap-2">
             <select
               name=""
               id=""

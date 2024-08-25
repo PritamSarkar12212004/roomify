@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "react-toastify/dist/ReactToastify.css";
-import contextMaker from "../../../../context/contextMaker";
 function RightBar() {
-  const { auth } = useContext(contextMaker);
+  const auth = localStorage.getItem("auth");
   return (
     <div className="right flex h-full items-center text- gap-5  font-medium opacity-85">
       <img src="/logo/mainLogo.png" className="h-full" alt="" />

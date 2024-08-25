@@ -5,14 +5,14 @@ const ContextProvider = ({ children }) => {
   const [ProfileTogel, setProfileTogel] = useState(false);
   const [theme, setTheme] = useState(false);
   const [auth, setauth] = useState();
-
-  console.log(auth);
   useEffect(() => {
-    setauth(localStorage.getItem("auth"));
+    if (localStorage.getItem("auth")) {
+      setauth(localStorage.getItem("auth"));
+    }
   }, []);
   return (
     <contextMaker.Provider
-      value={{ ProfileTogel, setProfileTogel, theme, setTheme, auth, setauth }}
+      value={{ ProfileTogel, setProfileTogel, theme, setTheme, setauth, auth }}
     >
       {children}
     </contextMaker.Provider>

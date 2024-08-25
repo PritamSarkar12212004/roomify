@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import contextMaker from "../../../context/contextMaker";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import contextMaker from "../../../context/contextMaker";
 function ToggalBoxLayout() {
   const { ProfileTogel, setProfileTogel, theme, setTheme } =
     useContext(contextMaker);
@@ -8,7 +8,11 @@ function ToggalBoxLayout() {
   const themeHandle = () => {
     setTheme(!theme);
   };
-  return (
+  const auth = localStorage.getItem("auth");
+  useEffect(() => {
+
+  }, [auth]);
+  return auth ? (
     <div
       className={`fixed ${
         ProfileTogel ? "right-0 duration-300" : "right-[-100%] duration-300"
@@ -58,7 +62,7 @@ function ToggalBoxLayout() {
         <i class="ri-settings-3-fill"></i> Setting
       </NavLink>
     </div>
-  );
+  ) : null;
 }
 
 export default ToggalBoxLayout;
