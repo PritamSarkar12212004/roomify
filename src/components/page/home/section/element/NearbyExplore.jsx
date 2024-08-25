@@ -30,7 +30,7 @@ function NearbyExplore() {
           >
             <img
               className="h-40 w-40 rounded-full"
-              src={item.imgUrl || "public/areaRoom/no.avif"}
+              src={item.imgUrl || "/areaRoom/no.avif"}
               
             />
             <h1>{item.area}</h1>
