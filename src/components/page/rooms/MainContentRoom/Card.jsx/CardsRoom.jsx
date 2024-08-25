@@ -3,7 +3,7 @@ import React from "react";
 function CardsRoom() {
   return (
     <div className="w-64">
-      <img src="public/areaRoom/2.jpg" className="w-full rounded-xl" alt="" />
+      <img src="/areaRoom/2.jpg" className="w-full rounded-xl" alt="" />
       <span className="flex items-center gap-2 text-lg leading-tight tracking-tighter">
         <div className="flex  items-center gap-2">
           <span className="h-10 w-10 rounded-full bg-blue-500 flex">
