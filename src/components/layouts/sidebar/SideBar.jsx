@@ -48,7 +48,6 @@ function SideBar() {
   const onlyForType = ["single", "duo", "gropus"];
   const type = ["independent", "non-independent  "];
   const Furnished = ["furnished", "unfurnished", "semi-furnished"];
-  const parking = ["PARKING", "yes", "no"];
   return (
     <div className="h-[90vh] w-56 px-5 py-3 border-r-[1px] border-gray-300 font-mono relative ">
       <div className="w-full flex justify-between">
@@ -63,7 +62,6 @@ function SideBar() {
         <SideBarFilter data={olnyFor} />
         <SideBarFilter data={onlyForType} />
         <SideBarFilter data={Furnished} />
-        <SideBarFilter data={parking} />
         <SideBarFilter data={type} />
       </div>
       <div className="absolute bottom-2 left-0 w-full flex ">

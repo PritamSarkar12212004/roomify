@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import TakeoutDiningRoundedIcon from "@mui/icons-material/TakeoutDiningRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
@@ -9,9 +9,8 @@ import Stack from "@mui/material/Stack";
 import { deepOrange } from "@mui/material/colors";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import contextMaker from "../../../../context/contextMaker";
 function LeftBar() {
-  const { ProfileTogel, setProfileTogel } = useContext(contextMaker);
+  const navigate = useNavigate();
   const notify = () => {
     toast.info(" Working On It", {
       position: "top-center",
@@ -25,8 +24,7 @@ function LeftBar() {
       transition: Flip,
     });
   };
-  useEffect(() => {
-  }, [ProfileTogel]);
+  useEffect(() => {}, []);
   return (
     <div className="flex h-full items-center gap-7">
       <NavLink
@@ -79,7 +77,7 @@ function LeftBar() {
       <button className="hover:text-blue-700 text-blue-700 duration-300 gap-2 flex items-center px-3 py-2 rounded-xl bg-[#EDECFB]">
         <NotificationsRoundedIcon />
       </button>
-      <button onClick={() => setProfileTogel(!ProfileTogel)}>
+      <button onClick={() => navigate("admin/profile")}>
         <Stack direction="row" spacing={2}>
           <Avatar sx={{ bgcolor: deepOrange[500] }}>P</Avatar>
         </Stack>
