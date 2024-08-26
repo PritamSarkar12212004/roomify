@@ -2,16 +2,32 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import contextMaker from "../../../context/contextMaker";
+import axios from "../../../utils/api/axios.js";
 function AuthenticateLogin() {
   const { setauth } = useContext(contextMaker);
   const navigate = useNavigate();
   const { handleSubmit, reset, register } = useForm();
-  const formSubmit = (data) => {
-    const auth = localStorage.setItem("auth", JSON.stringify(data));
+  const loginAuth = (data) => {
+    data === "User not found" ? reseter() : authSetup(data);
+  };
+  const reseter = () => {
+    reset();
+
+    alert("User not found Plz Register");
+  };
+  const authSetup = (data) => {
+    localStorage.setItem("auth", JSON.stringify(data));
     setauth(data);
     reset();
     navigate("/");
   };
+  const LoginformSubmit = (data) => {
+    axios
+      .post("/auth/login", data)
+      .then((res) => loginAuth(res.data))
+      .catch((err) => console.log(err));
+  };
+  document.title = "RoomiFy | Login";
   return (
     <div
       className=" w-full h-[90.7vh]  flex flex-wrap  overflow-hidden relative "
@@ -49,7 +65,7 @@ function AuthenticateLogin() {
         <form
           action=""
           className=" flex flex-col gap-5 justify-center items-center border-2 border-zinc-800 px-10 py-20 rounded-2xl bg-black/15 backdrop-blur-sm"
-          onSubmit={handleSubmit(formSubmit)}
+          onSubmit={handleSubmit(LoginformSubmit)}
         >
           <h1 className="text-white text-3xl m-4">Login Your Identity </h1>
           <input
@@ -72,7 +88,10 @@ function AuthenticateLogin() {
               register now!
             </Link>
           </p>
-          <button className="px-4 mt-3 py-3 bg-blue-500 w-44 rounded text-white hover:bg-blue-600 duration-300">
+          <button
+            type="submit"
+            className="px-4 mt-3 py-3 bg-blue-500 w-44 rounded text-white hover:bg-blue-600 duration-300"
+          >
             Login
           </button>
         </form>

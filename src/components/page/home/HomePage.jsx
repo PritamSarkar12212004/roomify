@@ -4,6 +4,7 @@ import Section2 from "./section/Section2";
 import Section3 from "./section/Section3";
 import Footer from "../footer/Footer";
 function HomePage() {
+  document.title="RoomiFy | Home"
   return (
     <div className="max-w-7xl 10 px-10">
       

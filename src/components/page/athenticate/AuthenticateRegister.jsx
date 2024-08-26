@@ -1,7 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import contextMaker from "../../../context/contextMaker";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import axios from "../../../utils/api/axios.js";
+import contextMaker from "../../../context/contextMaker.js";
 function AuthenticateRegister() {
+  document.title = "RoomiFy | Register";
+  const { setauth } = useContext(contextMaker);
+  const { reset, handleSubmit, register } = useForm();
+  const navigate = useNavigate();
+  const resAlert = (res) => {
+    res === "User already exists"
+      ? alert("User already exists plz Login")
+      : authsetup(res);
+  };
+
+  const authsetup = (res) => {
+    localStorage.setItem("auth", res);
+    console.log(res);
+    setauth(JSON.stringify(res));
+    reset();
+    navigate("/login");
+  };
+  const formSubmit = (data) => {
+    axios
+      .post("/auth/register", data)
+      .then((res) => resAlert(res.data))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div
       className=" w-full h-[90.7vh]  flex flex-wrap  overflow-hidden relative "
@@ -38,25 +64,38 @@ function AuthenticateRegister() {
       <div className="w-full h-full bg-black/15 backdrop-blur-sm flex justify-center items-center ">
         <form
           action=""
-          className=" flex flex-col gap-5 justify-center items-center border-2 border-zinc-800 px-10 py-20 rounded-2xl bg-black/5 backdrop-blur-sm"
+          className=" flex flex-col gap-5 justify-center items-center border-2 border-zinc-800 px-10 py-10 rounded-2xl bg-black/5 backdrop-blur-sm"
+          onSubmit={handleSubmit(formSubmit)}
         >
           <h1 className="text-white text-3xl m-4">Register Your Identity </h1>
           <input
             type="text"
+            required
+            placeholder="Your Name"
+            className="h-12 rounded-lg px-4 w-80 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+            {...register("name")}
+          />
+          <input
+            type="text"
+            required
             placeholder="enter your Email"
             className="h-12 rounded-lg px-4 w-80 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+            {...register("email")}
           />
 
           <input
             type="text"
+            required
             placeholder="enter your password"
             className="h-12 rounded-lg px-4 w-80 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+            {...register("password")}
           />
           <div className="w-full flex justify-center items-center gap-2">
             <select
               name=""
               id=""
               className="h-12 rounded-lg px-4 w-40  outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+              {...register("city")}
             >
               <option value="Sitabuldi">Sitabuldi</option>
               <option value="Lokmanya_Nagar">Lokmanya Nagar</option>
@@ -73,6 +112,7 @@ function AuthenticateRegister() {
               name=""
               id=""
               className="h-12 rounded-lg px-4 w-40 outline-none border-none bg-black/45 text-white backdrop-blur-sm"
+              {...register("gender")}
             >
               <option value="Male">Male</option>
               <option value="Female">Female</option>
