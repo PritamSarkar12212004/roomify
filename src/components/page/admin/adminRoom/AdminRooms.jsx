@@ -6,22 +6,31 @@ import { NavLink } from "react-router-dom";
 function AdminRooms() {
   const { register, handleSubmit, reset } = useForm();
   const [owner, setuserid] = useState();
-  const [name, setname] = useState();
   const [room, setroom] = useState([]);
 
   const idData = () => {
     const auth = localStorage.getItem("auth");
-    const data = JSON.parse(auth);
-    setuserid(data._id);
+    if (auth) {
+      try {
+        const data = JSON.parse(auth);
+        setuserid(data._id);
+      } catch (error) {
+        console.error("Failed to parse auth from localStorage", error);
+      }
+    }
   };
 
   const authAdiminRoom = async () => {
     const auth = localStorage.getItem("auth");
-    const data = await JSON.parse(auth);
-    axios
-      .post("/admin/publish/room/find", data)
-      .then((res) => setroom(res.data))
-      .catch((err) => console.log(err));
+    if (auth) {
+      try {
+        const data = JSON.parse(auth);
+        const res = await axios.post("/admin/publish/room/find", data);
+        setroom(res.data);
+      } catch (error) {
+        console.error("Failed to fetch rooms or parse auth from localStorage", error);
+      }
+    }
   };
 
   const formSubmit = (data) => {
@@ -35,7 +44,7 @@ function AdminRooms() {
   useEffect(() => {
     idData();
     authAdiminRoom();
-  }, [room]);
+  }, []);
   return (
     <div className="w-full h-[90.6vh] py-3 flex">
       <div className="h-full w-[63%] flex flex-wrap overflow-y-auto">
