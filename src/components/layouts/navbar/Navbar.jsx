@@ -7,7 +7,6 @@ import contextMaker from "../../../context/contextMaker";
 function Navbar() {
   const { auth } = useContext(contextMaker);
   useEffect(() => {
-    console.log(auth);
   }, [auth]);
 
   return (
