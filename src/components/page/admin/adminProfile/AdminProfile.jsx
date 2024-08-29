@@ -1,5 +1,4 @@
 import React from "react";
-
 function AdminProfile() {
   return (
     <div className="w-full h-full relative ">

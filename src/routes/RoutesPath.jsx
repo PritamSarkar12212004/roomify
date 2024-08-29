@@ -12,7 +12,7 @@ import AuthenticateLogin from "../components/page/athenticate/AuthenticateLogin"
 import Private from "../components/private/Private";
 import AuthenticateRegister from "../components/page/athenticate/AuthenticateRegister";
 import Private2 from "../components/private/Private2";
-import AdminRooms from "../components/page/admin/adminRoom/AdminRooms";
+import AdminRoomControll from "../components/page/admin/adminRommControll/AdminRoomControll";
 function RoutesPath() {
   return (
     <Routes>
@@ -25,6 +25,7 @@ function RoutesPath() {
         <Route path="/policy" element={<Policy />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/admin/profile/*" element={<Profile />} />
+        <Route path="/admin/rooms/controll/:id" element={<AdminRoomControll />} />
       </Route>
       <Route element={<Private2 />}>
         <Route path="/login" element={<AuthenticateLogin />} />
