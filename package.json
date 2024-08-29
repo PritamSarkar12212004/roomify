@@ -25,7 +25,8 @@
     "react-router-dom": "^6.26.1",
     "react-simple-image-slider": "^2.4.1",
     "react-toastify": "^10.0.5",
-    "remixicon": "^4.3.0"
+    "remixicon": "^4.3.0",
+    "vercel": "^37.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
