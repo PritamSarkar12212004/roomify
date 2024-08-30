@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://roomify-backend.vercel.app",
+        target: "https://roomify-backend.vercel.app/",
         changeOrigin: true,
         secure: false,
         ws: true,
