@@ -13,9 +13,8 @@ function AuthenticateRegister() {
       ? alert("User already exists plz Login")
       : authsetup(res);
   };
-
   const authsetup = (res) => {
-    localStorage.setItem("auth", res);
+    localStorage.setItem("auth", JSON.stringify(res));
     console.log(res);
     setauth(JSON.stringify(res));
     reset();

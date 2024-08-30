@@ -8,6 +8,7 @@ function AdminRooms() {
   const [owner, setuserid] = useState();
   const [room, setroom] = useState([]);
 
+  // Fetch and set user ID from localStorage
   const idData = () => {
     const auth = localStorage.getItem("auth");
     if (auth) {
@@ -20,12 +21,13 @@ function AdminRooms() {
     }
   };
 
-  const authAdiminRoom = async () => {
+  // Fetch rooms data from the server
+  const authAdminRoom = async () => {
     const auth = localStorage.getItem("auth");
     if (auth) {
       try {
         const data = JSON.parse(auth);
-        const res = await axios.post("/admin/publish/room/find", data);
+        const res = await axios.post("/admin/publish/room/find", { owner: data._id });
         setroom(res.data);
       } catch (error) {
         console.error("Failed to fetch rooms or parse auth from localStorage", error);
@@ -33,31 +35,30 @@ function AdminRooms() {
     }
   };
 
+  // Handle form submission
   const formSubmit = (data) => {
     axios
-      .post("/admin/publish/room", { data, owner })
-      .then((res) => authAdiminRoom())
+      .post("/admin/publish/room", { ...data, owner })
+      .then(() => authAdminRoom())
       .catch((err) => console.log(err));
     reset();
   };
 
   useEffect(() => {
     idData();
-    authAdiminRoom();
+    authAdminRoom();
   }, []);
+
   return (
     <div className="w-full h-[90.6vh] py-3 flex">
       <div className="h-full w-[63%] flex flex-wrap overflow-y-auto">
         {room.map((item, index) => {
-          const formattedDate = new Date(item.createdAt).toLocaleDateString(
-            "en-GB"
-          );
+          const formattedDate = new Date(item.createdAt).toLocaleDateString("en-GB");
 
           return (
-            <NavLink to={`/admin/rooms/controll/${item._id}`}>
+            <NavLink to={`/admin/rooms/controll/${item._id}`} key={item._id}>
               <div
                 className="relative border-2 border-gray-300 rounded-xl m-2 h-80 px-2 py-2 hover:scale-105 duration-300 cursor-pointer"
-                key={index}
               >
                 <img
                   src={item.imageUrl1 ? item.imageUrl1 : "/areaRoom/1.jpg"}
@@ -124,15 +125,11 @@ function AdminRooms() {
               {...register("price")}
             />
             <textarea
-              name=""
-              id=""
-              className="w-full border-[1px] bg-zinc-200   rounded-lg px-4 py-2 h-52 outline-none"
+              className="w-full border-[1px] bg-zinc-200 rounded-lg px-4 py-2 h-52 outline-none"
               {...register("description")}
               required
             ></textarea>
             <select
-              name=""
-              id=""
               className="h-12 rounded-lg px-4 w-full outline-none border-none bg-zinc-200"
               {...register("area")}
             >
@@ -150,8 +147,6 @@ function AdminRooms() {
           </div>
           <div className="w-full mt-2 flex justify-between">
             <select
-              name=""
-              id=""
               className="w-[49%] h-10 rounded-lg px-4 outline-none border-none bg-zinc-200"
               {...register("furnished")}
             >
@@ -160,8 +155,6 @@ function AdminRooms() {
               <option value="Unfurnished">Unfurnished</option>
             </select>
             <select
-              name=""
-              id=""
               className="w-[49%] h-10 rounded-lg px-4 outline-none border-none bg-zinc-200"
               {...register("independent")}
             >
@@ -171,8 +164,6 @@ function AdminRooms() {
           </div>
           <div className="w-full mt-2 flex justify-between">
             <select
-              name=""
-              id=""
               className="w-[49%] h-10 rounded-lg px-4 outline-none border-none bg-zinc-200"
               {...register("gender")}
             >
@@ -181,8 +172,6 @@ function AdminRooms() {
               <option value="Family">Family</option>
             </select>
             <select
-              name=""
-              id=""
               className="w-[49%] h-10 rounded-lg px-4 outline-none border-none bg-zinc-200"
               {...register("type")}
             >
