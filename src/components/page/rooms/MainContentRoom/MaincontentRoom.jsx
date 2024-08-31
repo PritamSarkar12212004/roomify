@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CardsRoom from "./Card.jsx/CardsRoom";
 import axios from "../../../../utils/api/axios";
+import Loading1 from "../../../loading/Loading1";
+import contextMaker from "../../../../context/contextMaker";
 function MaincontentRoom() {
-  const [room, setroom] = useState([]);
+  const { room, setroom } = useContext(contextMaker);
   const roomdata = () => {
     axios
       .get("/find/room")
@@ -14,12 +16,18 @@ function MaincontentRoom() {
   }, []);
   return (
     <div className="flex flex-auto flex-col px-2 h-[90vh]">
-      <h1 className=" flex mx-auto bg-white text-xl py-2">Nagpur</h1>
-      <div className="flex flex-wrap gap-5  h-full overflow-y-auto">
-        {room.map((item, index) => {
-          return <CardsRoom key={index} item={item} />;
-        })}
-      </div>
+      {room ? (
+        <div>
+          <h1 className=" flex mx-auto bg-white text-xl py-2">Nagpur</h1>
+          <div className="flex flex-wrap gap-5  h-full overflow-y-auto">
+            {room.map((item, index) => {
+              return <CardsRoom key={index} item={item} />;
+            })}
+          </div>
+        </div>
+      ) : (
+        <Loading1 />
+      )}
     </div>
   );
 }

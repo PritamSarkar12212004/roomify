@@ -5,6 +5,10 @@ const ContextProvider = ({ children }) => {
   const [ProfileTogel, setProfileTogel] = useState(false);
   const [theme, setTheme] = useState(false);
   const [auth, setauth] = useState();
+
+  const [room, setroom] = useState([]);
+
+
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       setauth(localStorage.getItem("auth"));
@@ -12,7 +16,7 @@ const ContextProvider = ({ children }) => {
   }, []);
   return (
     <contextMaker.Provider
-      value={{ ProfileTogel, setProfileTogel, theme, setTheme, setauth, auth }}
+      value={{ ProfileTogel, setProfileTogel, theme, setTheme, setauth, auth ,setroom,room}}
     >
       {children}
     </contextMaker.Provider>

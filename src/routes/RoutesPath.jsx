@@ -14,6 +14,7 @@ import AuthenticateRegister from "../components/page/athenticate/AuthenticateReg
 import Private2 from "../components/private/Private2";
 import AdminRoomControll from "../components/page/admin/adminRommControll/AdminRoomControll";
 import AdminRoomUpdate from "../components/page/admin/adminRoomUodate/AdminRoomUpdate";
+import ShowRoom from "../components/page/rooms/showRooms/ShowRoom";
 function RoutesPath() {
   return (
     <Routes>
@@ -34,6 +35,7 @@ function RoutesPath() {
           path="/admin/rooms/controll/update/:id"
           element={<AdminRoomUpdate />}
         />
+        <Route path="/rooms/show/:id" element={<ShowRoom />} />
       </Route>
       <Route element={<Private2 />}>
         <Route path="/login" element={<AuthenticateLogin />} />

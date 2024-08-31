@@ -22,15 +22,20 @@ function AdminRooms() {
   };
 
   // Fetch rooms data from the server
-  const authAdminRoom = async () => {
+  const authAdminRoom = async (data) => {
     const auth = localStorage.getItem("auth");
     if (auth) {
       try {
         const data = JSON.parse(auth);
-        const res = await axios.post("/admin/publish/room/find", { owner: data._id });
-        setroom(res.data);
+        axios
+          .post("/admin/publish/room/find", { owner: data._id })
+          .then((res) => setroom(res.data))
+          .catch((err) => console.log(err));
       } catch (error) {
-        console.error("Failed to fetch rooms or parse auth from localStorage", error);
+        console.error(
+          "Failed to fetch rooms or parse auth from localStorage",
+          error
+        );
       }
     }
   };
@@ -39,7 +44,7 @@ function AdminRooms() {
   const formSubmit = (data) => {
     axios
       .post("/admin/publish/room", { ...data, owner })
-      .then(() => authAdminRoom())
+      .then((res) => authAdminRoom(res.data))
       .catch((err) => console.log(err));
     reset();
   };
@@ -47,19 +52,19 @@ function AdminRooms() {
   useEffect(() => {
     idData();
     authAdminRoom();
-  }, []);
+  }, [room]);
 
   return (
     <div className="w-full h-[90.6vh] py-3 flex">
       <div className="h-full w-[63%] flex flex-wrap overflow-y-auto">
         {room.map((item, index) => {
-          const formattedDate = new Date(item.createdAt).toLocaleDateString("en-GB");
+          const formattedDate = new Date(item.createdAt).toLocaleDateString(
+            "en-GB"
+          );
 
           return (
             <NavLink to={`/admin/rooms/controll/${item._id}`} key={item._id}>
-              <div
-                className="relative border-2 border-gray-300 rounded-xl m-2 h-80 px-2 py-2 hover:scale-105 duration-300 cursor-pointer"
-              >
+              <div className="relative border-2 border-gray-300 rounded-xl m-2 h-80 px-2 py-2 hover:scale-105 duration-300 cursor-pointer">
                 <img
                   src={item.imageUrl1 ? item.imageUrl1 : "/areaRoom/1.jpg"}
                   className="h-56 rounded-xl w-60"
@@ -127,7 +132,6 @@ function AdminRooms() {
             <textarea
               className="w-full border-[1px] bg-zinc-200 rounded-lg px-4 py-2 h-52 outline-none"
               {...register("description")}
-              required
             ></textarea>
             <select
               className="h-12 rounded-lg px-4 w-full outline-none border-none bg-zinc-200"
