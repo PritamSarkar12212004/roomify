@@ -14,6 +14,7 @@ function AdminRoomControll() {
   const { imageUrl1, imageUrl2, imageUrl3 } = data;
   const [imgdata, setimgdata] = useState();
   const dataset = (res) => {
+    document.title = "Admin Controll";
     setdata(res.data);
     setimgdata(res.data.imageUrl1);
   };

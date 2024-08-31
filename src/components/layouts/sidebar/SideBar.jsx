@@ -21,7 +21,6 @@ function SideBar() {
     });
   };
   const priceFilter = [
-    "PRICE",
     "1500-2000",
     "2000-2500",
     ,

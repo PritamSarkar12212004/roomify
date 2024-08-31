@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../../../utils/api/axios";
 
 function AdminRoomUpdate() {
+  document.title = "Admin Room Update";
   const params = useParams().id;
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();

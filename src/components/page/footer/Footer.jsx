@@ -31,7 +31,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div  className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3">
             <h1 className="text-xl">Follow us</h1>
             <ul className="flex flex-col gap-2 mt-2">
               <li>
@@ -48,7 +48,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div  className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3">
             <h1 className="text-xl">Follow us</h1>
             <ul className="flex flex-col gap-2 mt-2">
               <li>

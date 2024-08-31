@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import contextMaker from "../../../context/contextMaker";
 import axios from "../../../utils/api/axios.js";
 function AuthenticateLogin() {
+  document.title = "RoomiFy | Login";
   const { setauth } = useContext(contextMaker);
   const navigate = useNavigate();
   const { handleSubmit, reset, register } = useForm();

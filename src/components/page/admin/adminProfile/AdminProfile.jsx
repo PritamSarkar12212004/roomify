@@ -1,5 +1,6 @@
 import React from "react";
 function AdminProfile() {
+  document.title = "Admin Profile";
   return (
     <div className="w-full h-full relative ">
       <img
@@ -23,7 +24,6 @@ function AdminProfile() {
           </h2>
         </div>
       </div>
-      
     </div>
   );
 }

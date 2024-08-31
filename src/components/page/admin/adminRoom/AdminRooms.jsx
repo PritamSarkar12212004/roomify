@@ -4,6 +4,7 @@ import axios from "../../../../utils/api/axios";
 import { NavLink } from "react-router-dom";
 
 function AdminRooms() {
+  document.title = "Admin Rooms";
   const { register, handleSubmit, reset } = useForm();
   const [owner, setuserid] = useState();
   const [room, setroom] = useState([]);

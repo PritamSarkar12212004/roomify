@@ -21,6 +21,7 @@ function AuthenticateRegister() {
     navigate("/login");
   };
   const formSubmit = (data) => {
+    document.title = "RoomiFy | Register";
     axios
       .post("/auth/register", data)
       .then((res) => resAlert(res.data))
